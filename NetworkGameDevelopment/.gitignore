@@ -25,7 +25,7 @@
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
 # Clones created with ParrelSync
-*_clone_[0-9]*/
+/*_clone_[0-9]*/
 
 # Visual Studio cache directory
 .vs/
