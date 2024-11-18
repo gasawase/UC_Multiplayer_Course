@@ -1,8 +1,7 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace Resource.Scripts.Player
+namespace App.Resource.Scripts.Player
 {
 
     public class PlayerMovement : NetworkBehaviour
@@ -24,7 +23,7 @@ namespace Resource.Scripts.Player
             }
         }
 
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             if (!IsOwner) return; // if you are not the owner of this object, end this function
             
@@ -38,9 +37,14 @@ namespace Resource.Scripts.Player
             // jump animation trigger
             if (Input.GetKey(KeyCode.Space)) _ownerNetworkAnimator.SetTrigger("JumpTrigger");
             // get object animation trigger
-            if (Input.GetKey(KeyCode.R)) _ownerNetworkAnimator.SetTrigger("DigInPocketTrigger");
+            if (Input.GetKey(KeyCode.R)) _ownerNetworkAnimator.SetTrigger("DigPocketTrigger");
             
             _animator.SetBool("IsWalking", moveDirection.z != 0 || moveDirection.x != 0);
+            
+            if ( moveDirection.z != 0 || moveDirection.x != 0)
+            {
+                _animator.SetBool("IsWalking", true);
+            }
 
             float moveSpeed = 3f;
             transform.position += moveDirection * (moveSpeed * Time.deltaTime);

@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 989359877
+  GlobalObjectIdHash: 2175630539
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edea6268fe3e84640977772f49d50895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  _ownerNetworkAnimator: {fileID: 0}
+  _animator: {fileID: 300661862085033422}
+  _ownerNetworkAnimator: {fileID: 307917811473882805}
 --- !u!114 &1968860581474644510
 MonoBehaviour:
   m_ObjectHideFlags: 0

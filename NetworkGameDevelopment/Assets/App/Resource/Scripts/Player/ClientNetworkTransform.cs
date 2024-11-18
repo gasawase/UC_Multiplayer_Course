@@ -1,7 +1,7 @@
 using Unity.Netcode.Components;
 using UnityEngine;
 
-namespace Resource.Scripts.Player
+namespace App.Resource.Scripts.Player
 {
     [DisallowMultipleComponent]
     public class ClientNetworkTransform : NetworkTransform
