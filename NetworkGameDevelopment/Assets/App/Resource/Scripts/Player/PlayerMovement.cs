@@ -25,29 +25,45 @@ namespace App.Resource.Scripts.Player
 
         void FixedUpdate()
         {
-            if (!IsOwner) return; // if you are not the owner of this object, end this function
-            
-            // local physical movement management 
-            Vector3 moveDirection = new Vector3(0, 0, 0);
-            if (Input.GetKey(KeyCode.W)) moveDirection.z = +1f;
-            if (Input.GetKey(KeyCode.S)) moveDirection.z = -1f;
-            if (Input.GetKey(KeyCode.A)) moveDirection.x = -1f;
-            if (Input.GetKey(KeyCode.D)) moveDirection.x = +1f;
-            
-            // jump animation trigger
-            if (Input.GetKey(KeyCode.Space)) _ownerNetworkAnimator.SetTrigger("JumpTrigger");
-            // get object animation trigger
-            if (Input.GetKey(KeyCode.R)) _ownerNetworkAnimator.SetTrigger("DigPocketTrigger");
-            
-            _animator.SetBool("IsWalking", moveDirection.z != 0 || moveDirection.x != 0);
-            
-            if ( moveDirection.z != 0 || moveDirection.x != 0)
-            {
-                _animator.SetBool("IsWalking", true);
-            }
+            if (!IsOwner) return; // Ensure only the owner controls the object
 
+            // Get the input direction
+            Vector3 moveDirection = GetInputDirection();
+
+            // Trigger animations
+            HandleAnimations(moveDirection);
+
+            // Move the player
+            MovePlayer(moveDirection);
+        }
+
+        private Vector3 GetInputDirection()
+        {
+            float horizontal = Input.GetKey(KeyCode.D) ? 1f : Input.GetKey(KeyCode.A) ? -1f : 0f;
+            float vertical = Input.GetKey(KeyCode.W) ? 1f : Input.GetKey(KeyCode.S) ? -1f : 0f;
+            Vector3 direction = new Vector3(horizontal, 0f, vertical);
+
+            // Normalize to prevent speed boost on diagonal movement
+            return direction.normalized;
+        }
+
+        private void HandleAnimations(Vector3 moveDirection)
+        {
+            bool isWalking = moveDirection.magnitude > 0;
+            _animator.SetBool("IsWalking", isWalking);
+
+            if (Input.GetKey(KeyCode.Space))
+                _ownerNetworkAnimator.SetTrigger("JumpTrigger");
+    
+            if (Input.GetKey(KeyCode.R))
+                _ownerNetworkAnimator.SetTrigger("DigPocketTrigger");
+        }
+
+        private void MovePlayer(Vector3 moveDirection)
+        {
             float moveSpeed = 3f;
             transform.position += moveDirection * (moveSpeed * Time.deltaTime);
         }
+
     }
 }
