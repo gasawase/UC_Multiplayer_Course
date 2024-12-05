@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 4646706407824806282}
   - component: {fileID: 7273501874005295227}
   - component: {fileID: 4384019899122624004}
-  - component: {fileID: 1986041151285583593}
   m_Layer: 3
   m_Name: ServerPlayer2
   m_TagString: Untagged
@@ -257,19 +256,6 @@ MonoBehaviour:
     TriggerNameHash: 243400645
     TransitionIndex: 2
   m_Animator: {fileID: 7273501874005295227}
---- !u!114 &1986041151285583593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3862148721693147305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d340bb33112e68648a00c05c3303bfb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliderObject: {fileID: 2660189488874943167}
 --- !u!1 &7965135000936676165
 GameObject:
   m_ObjectHideFlags: 0
