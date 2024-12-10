@@ -18,7 +18,9 @@ public class LobbyManager : NetworkBehaviour
     [SerializeField] private GameObject _contentGO; // Where we are spawning the panelPrefabs
     [SerializeField] private TMP_Text _rdyText; // update status to the user
     [SerializeField] private TMP_Text _clientIDText;
-    public int numPlayers;
+    [SerializeField] private TMP_Text _chatMessagePanel;
+    [SerializeField] private TMP_InputField _chatInputField;
+    [SerializeField] private Button _sendButton;
 
     /// list of network players
 
@@ -35,6 +37,7 @@ public class LobbyManager : NetworkBehaviour
     private void Start()
     {
         _myLocalClientID = NetworkManager.ServerClientId;
+        _chatMessagePanel.text = "";
 
         if (IsServer)
         {
@@ -52,9 +55,26 @@ public class LobbyManager : NetworkBehaviour
         
         _leaveButt.onClick.AddListener(LeaveButtClicked);
         _readyButt.onClick.AddListener(ClientReadyButtToggle);
+        _sendButton.onClick.AddListener(SendButtonClicked);
+        Debug.Log("listeners added");
     }
-    
-    
+
+    private void SendButtonClicked()
+    {
+        if(!IsClient && !IsHost) {return;}
+        Debug.Log($"Sending button clicked: {_chatInputField.text}");
+        SendChatMessageRpc(_chatInputField.text);
+        _chatInputField.text = "";
+    }
+
+    private void ChatMessageReceived(ulong clientID, string message)
+    {
+        // this is called in the rpc on each client
+        _chatMessagePanel.text = _chatMessagePanel.text + "\n" + clientID.ToString() + ": " + message;
+        
+    }
+
+
     private void ClientReadyButtToggle()
     {
         if(IsServer) {return;}
@@ -116,7 +136,6 @@ public class LobbyManager : NetworkBehaviour
         foreach (PlayerInfoData playerData  in _networkPlayers._allConnectedPlayers)
         {
             // instantiate
-
             GameObject newPlayerPanel = Instantiate(_panelPrefab, _contentGO.transform);
             PlayerInfoPanel _playerLabel = newPlayerPanel.GetComponent<PlayerInfoPanel>();
 
@@ -192,8 +211,8 @@ public class LobbyManager : NetworkBehaviour
             }
 
     }
-
-
+    
+    
 
     private void ClearPlayerPanels()
     {
@@ -222,10 +241,18 @@ public class LobbyManager : NetworkBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    [Rpc(SendTo.Everyone, RequireOwnership = false)]
+    private void SendChatMessageRpc(string message, RpcParams rpcParams = default)
+    {
+        ChatMessageReceived(rpcParams.Receive.SenderClientId, message);
+    }
     
     [Rpc(SendTo.Server, RequireOwnership = false)]
     private void LeaveLobbyServerRpc(RpcParams rpcParams = default)
     {
         KickUserBttn(rpcParams.Receive.SenderClientId);
     }
+    
+    
 }
