@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// NOTE THIS IS PlayerLabel IN THE TUTORIALS
+
 namespace Resource.Scripts.UI
 {
     public class PlayerInfoPanel : MonoBehaviour

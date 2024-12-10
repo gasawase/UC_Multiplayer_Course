@@ -7,17 +7,18 @@ public class UI_NetManager : NetworkBehaviour
 {
     [SerializeField] private Button _serverButt, _clientButt, _hostButt, _startButt;
 
-    [SerializeField] private GameObject _connectionButtons;
+    [SerializeField] private GameObject _connectionButtons, _socialPanel;
     
 
     [SerializeField] private SpawnController _mySpawnController;
 
     void Start()
     {
-        _hostButt.onClick.AddListener(HostClick);
-        _clientButt.onClick.AddListener(ClientClick);
-        _serverButt.onClick.AddListener(ServerClick);
-        _startButt.onClick.AddListener(StartClick);
+        _startButt.gameObject.SetActive(false);
+        if (_hostButt != null) _hostButt.onClick.AddListener(HostClick);
+        if (_clientButt != null) _clientButt.onClick.AddListener(ClientClick);
+        if (_serverButt != null) _serverButt.onClick.AddListener(ServerClick);
+        if (_startButt != null) _startButt.onClick.AddListener(StartClick);
     }
     
     private void ServerClick()
@@ -45,8 +46,14 @@ public class UI_NetManager : NetworkBehaviour
         {
             // handle spawning
             _mySpawnController.SpawnAllPlayers();
-            _startButt.gameObject.SetActive(false);
+            HideGuiRpc();
         }
 
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void HideGuiRpc()
+    {
+        _socialPanel.SetActive(false);
     }
 }
