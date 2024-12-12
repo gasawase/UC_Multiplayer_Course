@@ -4,7 +4,7 @@ using App.Resource.Scripts.Player;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace App.Resource.Scripts
+namespace App.Resource.Scripts.Obj
 {
     public class ProjectileObj : NetworkBehaviour
     {

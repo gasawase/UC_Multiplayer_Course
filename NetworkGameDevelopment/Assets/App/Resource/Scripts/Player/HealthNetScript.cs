@@ -23,6 +23,7 @@ namespace App.Resource.Scripts.Player
             
             // Tap into the on value changes
             _Health.OnValueChanged += UpdateHealth;
+            FindObjectOfType<GameScript>().AddPlayerRpc();
         }
 
         private void UpdateHealth(float previousvalue, float newvalue)

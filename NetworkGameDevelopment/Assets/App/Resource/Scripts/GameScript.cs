@@ -13,6 +13,7 @@ namespace App.Resource.Scripts
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
+            
             myWinText.gameObject.SetActive(false);
         }
 

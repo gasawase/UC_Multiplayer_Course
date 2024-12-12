@@ -6,7 +6,7 @@ namespace App.Resource.Scripts.Obj
     public class BulletSpawner : NetworkBehaviour
     {
         [SerializeField] private NetworkObject _projectilePrefab;
-        [SerializeField] private NetworkVariable<int> _ammoAmount;
+        [SerializeField] public NetworkVariable<int> _ammoAmount = new NetworkVariable<int>(4);
         [SerializeField] private Transform _startingPoint;
 
         [Rpc(SendTo.Server, RequireOwnership = false)]
