@@ -12,6 +12,7 @@ public class ServerPlayerMovement : NetworkBehaviour
     [SerializeField] private float _pSpeed;
     [SerializeField] private Transform _pTransform;
     [SerializeField] private BulletSpawner _bulletSpawner;
+    [SerializeField] private Camera _playerOwnedCamera;
     public CharacterController _cc;
     public Rigidbody _rb;
     private MyPlayerInputActions _playerInput;
@@ -36,6 +37,17 @@ public class ServerPlayerMovement : NetworkBehaviour
         }
         _playerInput = new MyPlayerInputActions();
         _playerInput.Enable();
+
+        if (IsOwner)
+        {
+            Camera.main.gameObject.SetActive(false);
+            _playerOwnedCamera.gameObject.SetActive(true);
+        }
+        else
+        {
+            Camera.main.gameObject.SetActive(true);
+            _playerOwnedCamera.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -82,10 +94,10 @@ public class ServerPlayerMovement : NetworkBehaviour
 
         _myAnimator.SetBool("IsWalking", _input.x != 0 || _input.y != 0);
         
-        //if (_input.x == 0f && _input.y == 0f) return;
+        if (_input.x == 0f && _input.y == 0f) return;
 
         // Apply movement using Rigidbody
-        Vector3 velocity = _moveDirection * (_pSpeed * Time.deltaTime);
+        Vector3 velocity = _moveDirection * _pSpeed;
         _rb.velocity = new Vector3(velocity.x, _rb.velocity.y, velocity.z); // Preserve vertical velocity for gravity
     }
 
