@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2660189488874943167}
   - component: {fileID: 6918026252748059987}
   - component: {fileID: 5555209797427934805}
-  - component: {fileID: 3592774563457893113}
   - component: {fileID: 1968860581474644510}
   - component: {fileID: 4259365835327076994}
   - component: {fileID: 300661862085033422}
@@ -103,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2175630539
+  GlobalObjectIdHash: 989359877
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -112,20 +111,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &3592774563457893113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3862148721693147305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edea6268fe3e84640977772f49d50895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 300661862085033422}
-  _ownerNetworkAnimator: {fileID: 307917811473882805}
 --- !u!114 &1968860581474644510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +206,7 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 2081823275
     DestinationState: -1063106392
-    TransitionDuration: 0.25
+    TransitionDuration: 0.083247125
     TriggerNameHash: 243400645
     TransitionIndex: 2
   m_Animator: {fileID: 300661862085033422}
@@ -429,10 +414,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1268560294735226, guid: 68617247be1cad64d8dfe7e3cbbb3174,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6608900776330197089}
-    - targetCorrespondingSourceObject: {fileID: 1268560294735226, guid: 68617247be1cad64d8dfe7e3cbbb3174,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8673338660662542738}
     - targetCorrespondingSourceObject: {fileID: 1268560294735226, guid: 68617247be1cad64d8dfe7e3cbbb3174,
         type: 3}
@@ -492,20 +473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 5402127298512892231}
---- !u!114 &6608900776330197089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5451828793537304163}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edea6268fe3e84640977772f49d50895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  _ownerNetworkAnimator: {fileID: 0}
 --- !u!114 &8673338660662542738
 MonoBehaviour:
   m_ObjectHideFlags: 0

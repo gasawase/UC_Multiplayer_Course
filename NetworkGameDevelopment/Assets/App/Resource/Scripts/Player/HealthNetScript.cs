@@ -31,6 +31,7 @@ namespace App.Resource.Scripts.Player
             if (_healthSlider != null)
             {
                 _healthSlider.value = newvalue / _startingHealth;
+                Debug.Log($"Health: {_healthSlider.value} Old Value: {previousvalue} New Value: {newvalue}");
             }
 
             if (IsOwner)

@@ -22,7 +22,7 @@ namespace App.Resource.Scripts.Obj
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.tag == "Projectile" || other.gameObject.tag.Equals("Explosion"))
+            if (other.gameObject.tag == "Projectile" || other.gameObject.tag.Equals("Explosion") || other.gameObject.tag.Equals("Player"))
             {
                 TriggerExplosionRpc();
             }
