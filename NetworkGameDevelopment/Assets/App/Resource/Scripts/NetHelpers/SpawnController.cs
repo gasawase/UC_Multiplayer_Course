@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
-using UnityEditor.MemoryProfiler;
 
 // this script contains the functionality for the server
 public class SpawnController : NetworkBehaviour
